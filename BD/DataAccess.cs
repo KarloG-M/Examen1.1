@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Dapper.Mapper;
+using Entity;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BD
 {
-    public class DataAccess
+    public class DataAccess : IDataAccess
     {
         private readonly IConfiguration config;
 
@@ -253,7 +256,7 @@ namespace BD
 
                     return new()
                     {
-                        CodeError = result.GetInt32(0),
+                        CodError = result.GetInt32(0),
                         MsgError = result.GetString(1)
 
                     };
